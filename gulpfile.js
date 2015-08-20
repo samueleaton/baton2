@@ -6,12 +6,12 @@ var plumber = require("gulp-plumber");
 gulp.slurped = false;
 
 gulp.task("default", function(){
-	gulp.src("baton.js")
+	gulp.src("fang.js")
 	.pipe(plumber())
 	.pipe(uglify())
-	.pipe(rename("baton.min.js"))
+	.pipe(rename("fang.min.js"))
 	.pipe(gulp.dest("./"))
 
-	if(!gulp.slurped) gulp.watch(["baton.js"], ["default"]);
+	if(!gulp.slurped) gulp.watch(["fang.js"], ["default"]);
 	gulp.slurped = true;
 });

@@ -1,13 +1,13 @@
-var baton = (function(){
+var fang = (function(){
 	
 	// "use strict";
 
-	// Initiates Baton Series
-	var _b = {
-		// Adds Function to Baton Series
+	// Initiates Fang Series
+	var _fang = {
+		// Adds Function to Fang Series
 		then: function(_callback){
-			if(typeof _callback === "function") _b.utils.queue.push(_callback);
-			return _b;
+			if(typeof _callback === "function") _fang.utils.queue.push(_callback);
+			return _fang;
 		},
 
 		// Runs the Next Function in the Series
@@ -16,13 +16,13 @@ var baton = (function(){
 			var args = Array.prototype.splice.call(arguments, 0);
 
 			// if a proceeding function has been defined (using the 'then' method)
-			if(typeof _b.utils.queue[_b.utils.i+1] !== "undefined"){
+			if(typeof _fang.utils.queue[_fang.utils.i+1] !== "undefined"){
 
 				// increment the current call index
-				_b.utils.i++;
+				_fang.utils.i++;
 
 				// run the next function
-				return _b.utils.queue[_b.utils.i].apply({next:_b.next}, args);
+				return _fang.utils.queue[_fang.utils.i].apply({next:_fang.next}, args);
 			}
 		},
 
@@ -38,14 +38,10 @@ var baton = (function(){
 
 	return function(){
 
-		var args = [];
+		var newFang = Object.create(_fang);
+		
 		for(var i = 0, ii = arguments.length; i < ii; i++){
-			if(typeof arguments[i] === "function") args.push(arguments[i]);
-		}
-
-		var newBaton = Object.create(_b);
-		for(var i = 0, ii = args.length; i < ii; i++){
-			newBaton = newBaton.then(args[i]);
+			if(typeof arguments[i] === "function") newFang.then(arguments[i]);
 		}
 
 		function run(){
@@ -53,11 +49,11 @@ var baton = (function(){
 			for(var i = 0, ii = arguments.length; i < ii; i++){
 				args.push(arguments[i]);
 			}
-			newBaton.utils.i = -1;
-			return newBaton.next.apply(null, args);
+			newFang.utils.i = -1;
+			return newFang.next.apply(null, args);
 		}
 
-		run.append = newBaton.then;
+		// run.append = newFang.then;
 
 		return run;
 	};
