@@ -7,7 +7,7 @@
 
 <body>
 
-<script type="text/javascript" src="baton.js"></script>
+<script type="text/javascript" src="fang.js"></script>
 
 <script>
 
@@ -42,32 +42,48 @@ var async = function(callback, timer){
 		callback.call(self);
 	}, timer);
 }
-
-baton(
-	function(){
+var count = 0;
+var series = fang(
+	function(name){
+		count++;
+		// var next = this.next;
 		async.call(this, function(){
 			console.log("checkpoint 1");
-			this.next();
-		}, 1000);
+			console.log("hello, "+name);
+			// next();
+		}, 500);
 	},
 	function(letters){
+		// var next = this.next;
 		async.call(this, function(){
 			console.log("checkpoint 2");
-			this.next();
-		}, 1000);
+			// if(count < 5) series.init();
+			// console.log("series:",Object.getOwnPropertyNames(series))
+			// next();
+		}, 500);
 	},
 	function(name){
+		// var next = this.next;
 		async.call(this, function(){
 			console.log("checkpoint 3");
-			this.next()
-		}, 1000);
+			// next();
+		}, 500);
 	}
 )
-series.append(function(){
-	console.log("sam");
-})
 
-series();
+// series.append(function(){
+// 	console.log("sam");
+// })
+series.push(function(){
+	console.log("instant!")
+});
+series.initAsync();
+// setTimeout(function(){
+// 	series.init();
+// },250);
+
+// series.next();
+// series.init("samuel");
 // console.log("result => ",);
 
 
