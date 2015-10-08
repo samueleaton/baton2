@@ -28,9 +28,7 @@ module.exports = function () {
 
 			// if the next function has been defined
 			if (typeof _fang.utils.queue[_fang.utils.i + 1] !== 'undefined') {
-				// add the next function to the
 				args.unshift(_fang.next);
-				// increment the current call index
 				_fang.utils.i++;
 				// run the next function
 				return _fang.utils.queue[_fang.utils.i].apply({ next: _fang.next }, args);

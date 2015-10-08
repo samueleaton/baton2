@@ -1,12 +1,12 @@
-module.exports = function() {
+module.exports = function () {
 	// Fang Object
-	let _fang = {
+	const _fang = {
 
 		/* Initiates Fang Series
 		*/
-		init: function () {
-			let args = [];
-			for(let i = 0, ii = arguments.length; i < ii; i++){
+		init() {
+			const args = [];
+			for (let i = 0, ii = arguments.length; i < ii; i++) {
 				args.push(arguments[i]);
 			}
 			// sets first function of series as the next
@@ -18,17 +18,15 @@ module.exports = function() {
 
 		/* Runs the Next Function in the Series
 		*/
-		next: function() {
-			let args = [];
-			for(let i = 0, ii = arguments.length; i < ii ; i++) {
+		next() {
+			const args = [];
+			for (let i = 0, ii = arguments.length; i < ii ; i++) {
 				args.push(arguments[i]);
 			}
 
 			// if the next function has been defined
 			if (typeof _fang.utils.queue[_fang.utils.i + 1] !== 'undefined') {
-				// add the next function to the 
 				args.unshift(_fang.next);
-				// increment the current call index
 				_fang.utils.i++;
 				// run the next function
 				return _fang.utils.queue[_fang.utils.i].apply({next: _fang.next}, args);
