@@ -1,17 +1,20 @@
 {
-  "name": "baton",
+  "name": "fang",
   "version": "0.0.1",
   "description": "",
-  "main": "baton.js",
+  "main": "index.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint -c .eslintrc src/fang.js",
+    "preinstall": "npm i -g babel uglify-js",
+    "prebuild": "npm run lint",
+    "build": "babel src/fang.js > index.js",
+    "postbuild": "npm run uglify",
+    "uglify": "uglifyjs index.js > index.min.js"
   },
   "author": "",
   "license": "",
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-plumber": "^1.0.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.2.0"
+    "eslint": "^1.6.0"
   }
 }

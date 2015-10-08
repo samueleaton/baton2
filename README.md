@@ -1,26 +1,27 @@
 # Fang
-Async Synchronous Functions?   
+Function Gangs  
 [![GitHub version](https://badge.fury.io/gh/samueleaton%2Fbaton.svg)](http://badge.fury.io/gh/samueleaton%2Fbaton) <img src="https://img.shields.io/badge/license-MIT-blue.svg">
 
 Fang allows you to create a chain of functions, where the function chain will only progress if the control is yielded to the next function.
 
+The first parameter `next` of each function is what should be called to pass control to the next function.
+
 ```javascript
 fang(
-  function(){
-    console.log("1");
-    this.next();
+  function(next, num){
+    console.log(num); // 1
+    next(num + 1);
   },
-  function(){
-    console.log("2");
-    this.next();
+  function(next, num){
+    console.log(num); // 2
+    next(num * 3);
   },
-  function(){
-    console.log("3");
-    this.next();
+  function(init, num){
+    console.log(num); // 6
+    // init(num); // running init will cause another loop
   }
-)();
+)(1); // pass 1 to first function
 ```
-
 
 
 
