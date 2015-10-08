@@ -1,18 +1,20 @@
 {
-  "name": "fang",
+  "name": "fangs",
   "version": "0.0.1",
-  "description": "",
+  "description": "Function Gangs",
   "main": "index.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    
+    "test": "npm run -s lint",
     "build": "npm run -s _build",
     "lint": "eslint -c .eslintrc src/fang.js",
 
 
-    "postlint": "npm run -s lint-success",
-    "lint-success": "printf '%s\\033[30;102m%s\\033[39;49m\\n\\n' ' Lint ' ' Passed! '",
 
     "preinstall": "npm i -g babel uglify-js",
+
+    "postlint": "npm run -s lint-success",
+    "lint-success": "printf '%s\\033[30;102m%s\\033[39;49m\\n\\n' ' Lint ' ' Passed! '",
 
     "pre_build": "npm run -s lint",
     "_build": "babel src/fang.js > index.js",
