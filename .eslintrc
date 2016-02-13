@@ -126,7 +126,7 @@
 		// "block-scoped-var": 2,
 		"complexity": 2,
 		"consistent-return": 0,
-		"curly": [2, "multi-line"],	
+		"curly": [2, "multi-or-nest"],	
 		"default-case": 2,
 		"dot-notation": 2,
 		"eqeqeq": 2,
